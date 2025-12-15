@@ -1,0 +1,16 @@
+-- Creación de Roles (o Usuarios con permisos específicos)
+CREATE USER 'admin_db'@'localhost' IDENTIFIED BY 'AdminPass123';
+CREATE USER 'secretario_juzgado'@'localhost' IDENTIFIED BY 'SecretarioPass123';
+ 
+-- Asignación de Permisos (GRANT)
+-- Rol_Administrador
+GRANT ALL PRIVILEGES ON sistema_judicial.* TO 'admin_db'@'localhost' WITH GRANT OPTION;
+ 
+-- Rol_Secretario
+GRANT SELECT ON sistema_judicial.* TO 'secretario_juzgado'@'localhost';
+GRANT INSERT, UPDATE ON sistema_judicial.CASOS TO 'secretario_juzgado'@'localhost';
+GRANT INSERT, UPDATE ON sistema_judicial.AUDIENCIAS TO 'secretario_juzgado'@'localhost';
+GRANT INSERT, UPDATE ON sistema_judicial.RESOLUCIONES TO 'secretario_juzgado'@'localhost';
+ 
+-- Revocación de Permisos (REVOKE) - Ejemplo
+REVOKE DELETE ON sistema_judicial.RESOLUCIONES FROM 'secretario_juzgado'@'localhost';
