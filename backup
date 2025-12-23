@@ -1,0 +1,1 @@
+mysqldump -u root sistema_judicial > C:\backup\sistema_judicial_backup.sql
